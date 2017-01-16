@@ -1,0 +1,43 @@
+<% columns = @importer.importable_columns.map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift(['Ignorar essa coluna', :ignore]) %>
+
+<h3 class='page-title'>
+  Ajuste da importação
+  </br>
+  <small>Escolha as colunas</small>
+</h3>
+
+<%= simple_form_for @importer, url: importer_path(@importer) do |f| %>
+  <div class="row csv_import">
+    <% import_file_csv.headers.each_with_index do |header, i| %>
+    <div class="column">
+      <div class="portlet light bordered">
+        <div class="portlet-body form">
+          <header>
+            Coluna <b><%= header %></b>
+          </header>
+
+          <% selected = columns.find { |c| c.join(' ').match(/#{header}/i) }.try(:last).presence || :ignore %>
+          <%= f.input "columns][", as: :select, collection: columns, label: false, hint: "Escolha qual tipo de informação essa coluna contém.", include_blank: false, selected: f.object.columns[i] || selected %>
+
+          <header class="examples">Exemplos de valores</header>
+          <table>
+            <tbody>
+              <% import_file_csv.first(5).each_with_index do |row, c| %>
+                <tr>
+                  <td class="number"><%= c + 1 %></td>
+                  <td><%= row[header] %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="form-actions noborder">
+    <%= link_to 'Cancelar', 'javascript:history.back()', class: 'btn default' %>
+    <%= f.submit "Importar #{import_file_csv.count} registros", class: 'btn green' %>
+  </div>
+<% end %>

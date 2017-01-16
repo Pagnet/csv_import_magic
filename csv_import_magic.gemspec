@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'paperclip', '~> 5.1.0'
   s.add_dependency 'orm_adapter', '~> 0.1'
   s.add_dependency 'simple_form', '~> 3.4.0'
+  s.add_dependency 'sidekiq', '~> 4.2.9'
+  s.add_dependency 'sass-rails', '~> 5.0.5'
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "pry"
 end
