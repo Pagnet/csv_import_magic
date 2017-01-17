@@ -1,0 +1,19 @@
+<%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
+  <%= f.input :importable_type, as: :hidden, input_html: { value: 'importable_type_value' } %>
+  <%= f.input :importable_id, as: :hidden, input_html: { value: '<change this value>' } %>
+  <%= f.input :source, as: :hidden, input_html: { value: 'source_value' } %>
+
+  <div>
+    <h4 class="modal-title">Importação</h4>
+  </div>
+
+  <div>
+    <p><strong>Importação</strong>:</p>
+    <%= f.input :attachment, as: :file, label: false, required: true %>
+    <p>Envie um arquivo <b>CSV</b> com títulos/headers.</p>
+  </div>
+
+  <div>
+    <%= f.submit 'Importar', class: 'btn green' %>
+  </div>
+<% end %>

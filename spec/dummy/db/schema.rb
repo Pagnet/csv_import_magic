@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20170112125734) do
     t.string   "attachment_error_content_type"
     t.integer  "attachment_error_file_size"
     t.datetime "attachment_error_updated_at"
-    t.string   "status"
     t.string   "source"
     t.string   "columns"
     t.string   "error"
