@@ -36,8 +36,8 @@
     <% end %>
   </div>
 
-  <div class="form-actions noborder">
-    <%= link_to t('csv_import_magic.views.importers.edit.buttons.cancel'), 'javascript:history.back()', class: 'btn default' %>
-    <%= f.submit t('csv_import_magic.views.importers.edit.buttons.import', count: import_file_csv.count), class: 'btn green' %>
+  <div class="form-row actions">
+    <%= link_to t('csv_import_magic.views.importers.edit.buttons.cancel'), 'javascript:history.back()', class: 'button button--secondary' %>
+    <%= f.submit t('csv_import_magic.views.importers.edit.buttons.import', count: import_file_csv.count), class: 'button button--primary' %>
   </div>
 <% end %>
