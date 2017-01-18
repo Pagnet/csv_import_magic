@@ -27,7 +27,7 @@ module CsvImportMagic
 
     def set_attachement_error
       importer.attachment_error = tmp_failures_file
-      importer.error = 'Alguns registro não foram importados pois possuem erros!'
+      importer.error = I18n.t('csv_import_magic.services.failure.records_error')
       importer.save!
     end
 
@@ -36,7 +36,7 @@ module CsvImportMagic
         column = importer.source_klass.human_attribute_name(column)
       end.to_sentence
 
-      importer.update(error: "Esta faltando as seguintes colunas: #{columns_translated}")
+      importer.update(error: I18n.t('csv_import_magic.services.failure.columns_error', columns: columns_translated, count: columns_translated.size))
     end
 
     def tmp_failures_file
@@ -45,7 +45,7 @@ module CsvImportMagic
 
     def append_header(csv)
       identifier_translated = importer.source_klass.human_attribute_name(identifier)
-      csv << [identifier_translated, 'Erros']
+      csv << [identifier_translated, I18n.t('csv_import_magic.services.error_label')]
     end
 
     def append_records(csv)

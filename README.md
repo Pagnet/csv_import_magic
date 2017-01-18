@@ -50,6 +50,11 @@ If need specify scope.
 Scope is name of folder views inside `app/views`.
 This options `-i` add importable value into form.
 
+### I18n
+
+See our wiki page([I18n](https://github.com/Pagnet/csv_import_magic/wiki/I18n)).
+If your language not translated yet, send your yaml to append in our wiki, we appreciate your contribution.
+
 ### CSV Importer
 
 CSV Import Magic is based on csv-importer. We encourage you to read more about csv-importer here:

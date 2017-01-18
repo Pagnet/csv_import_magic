@@ -3,17 +3,15 @@
   <%= f.input :importable_id, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :source, as: :hidden, input_html: { value: 'source_value' } %>
 
-  <div>
-    <h4 class="modal-title">Importação</h4>
-  </div>
+  <h1 class="modal-title"><%= t('csv_import_magic.views.importers.new.title') %></h1>
 
   <div>
-    <p><strong>Importação</strong>:</p>
+    <p><strong><%= t('csv_import_magic.views.importers.new.description') %></strong>:</p>
     <%= f.input :attachment, as: :file, label: false, required: true %>
-    <p>Envie um arquivo <b>CSV</b> com títulos/headers.</p>
+    <p><%= t('csv_import_magic.views.importers.new.hint').html_safe %></p>
   </div>
 
   <div>
-    <%= f.submit 'Importar', class: 'btn green' %>
+    <%= f.submit t('csv_import_magic.views.importers.new.buttons.import'), class: 'btn green' %>
   </div>
 <% end %>

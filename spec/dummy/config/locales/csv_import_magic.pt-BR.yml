@@ -1,0 +1,56 @@
+pt-BR:
+  models_and_attributes: &models_and_attributes
+    models:
+      importer:
+        one: Importador
+        other: Importadores
+    attributes:
+      importer:
+        attachment: Anexo CSV
+        attachment_error: Anexo de erro CSV
+        source: Fonte
+        columns: Colunas
+        error: Erros
+
+  activerecord:
+    <<: *models_and_attributes
+  activemodel:
+    <<: *models_and_attributes
+
+  csv_import_magic:
+    importers_controller:
+      create:
+        alert: Por favor, informe em quais colunas podemos encontrar as informações que você deseja.
+      update:
+        notice: Arquivo enviado para processamento.
+        alert: Não foi possível processar seu arquivo, revise ele e tente novamente.
+    services:
+      error_label: Erros
+      failure:
+        columns_error:
+          one: 'Esta faltando as seguintes colunas: %{columns}'
+          other: 'Esta faltando a coluna %{columns}'
+        records_error: Alguns registros não foram importados pois contém erros!
+    views:
+      importers:
+        new:
+          title: Importador de %{model_translated}
+          description: Transfira seus registros de %{model_translated} de forma fácil
+          hint: 'Envie seu <b>CSV</b> com título e descrição.'
+          buttons:
+            import: Importar
+        edit:
+          title: Ajuste da importação
+          description: Indique quais das colunas devemos utilizar
+          ignore_column_label: Ignorar esta coluna
+          column: Coluna
+          hint: Escolha qual tipo de informação esta coluna tem.
+          example_of_values: Exemplo de valores
+          buttons:
+            import:
+              one: 'Importar %{count} registro'
+              other: 'Importar %{count} registros'
+            cancel: Cancelar
+  errors:
+    messages:
+      uniq: devem ser únicas

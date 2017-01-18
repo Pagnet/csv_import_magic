@@ -31,7 +31,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
 
         do_action
         expect(response).to redirect_to(CsvImportMagic.after_create_redirect_with_error)
-        expect(flash[:error]).to eq('A validação falhou: Attachment não pode ficar em branco')
+        expect(flash[:error]).to eq('A validação falhou: Anexo CSV não pode ficar em branco')
       end
     end
   end
@@ -86,7 +86,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
         is_expected.to respond_with(:success)
         is_expected.to render_template(:edit)
         expect(assigns(:importer)).to eq(importer)
-        expect(flash[:alert]).to eq('Columns não pode ser repetida')
+        expect(flash[:alert]).to eq('Colunas devem ser únicas')
       end
     end
   end

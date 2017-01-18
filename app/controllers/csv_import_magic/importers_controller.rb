@@ -6,7 +6,7 @@ class CsvImportMagic::ImportersController < ActionController::Base
     @importer = Importer.new(importer_params)
 
     if @importer.save! && import_file_csv
-      redirect_to edit_importer_path(@importer), alert: 'Por favor, informe em quais colunas podemos encontrar as informações que você deseja.'
+      redirect_to edit_importer_path(@importer), alert: t('csv_import_magic.importers_controller.create.alert')
     end
   rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
     redirect_to CsvImportMagic.after_create_redirect_with_error, flash: { error: e.message }
@@ -21,10 +21,10 @@ class CsvImportMagic::ImportersController < ActionController::Base
 
     if @importer.update(csv_importer_magic_update_params)
       CsvImportMagic::ImporterWorker.perform_async(@importer.id)
-      redirect_to CsvImportMagic.after_update_redirect_with_success, flash: { notice: 'Arquivo enviado para processamento.' }
+      redirect_to CsvImportMagic.after_update_redirect_with_success, flash: { notice: t('csv_import_magic.importers_controller.update.notice') }
     else
       errors = @importer.errors.full_messages.to_sentence
-      flash[:alert] = errors.present? ? errors : 'Não foi possível enviar o arquivo para processamento, por favor tente movamente.'
+      flash[:alert] = errors.present? ? errors : t('csv_import_magic.importers_controller.update.alert')
       render :edit
     end
   end

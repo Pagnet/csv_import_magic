@@ -63,6 +63,18 @@ end
     }
   end
 
+  specify 'check structure of locale' do
+    expect(destination_root).to have_structure {
+      directory "config" do
+        directory "locales" do
+          file "csv_import_magic.en.yml" do
+            contains  'en:'
+          end
+        end
+      end
+    }
+  end
+
   specify 'check structure of initializer' do
     initializer_content = <<-EOF
 CsvImportMagic.setup do |config|

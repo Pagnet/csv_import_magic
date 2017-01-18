@@ -28,6 +28,6 @@ class Importer < ActiveRecord::Base
 
     headers = columns.clone
     headers.delete('ignore')
-    errors.add(:columns, 'não pode ser repetida') if headers.size != headers.uniq.size
+    errors.add(:columns, :uniq) if headers.size != headers.uniq.size
   end
 end

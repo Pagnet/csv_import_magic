@@ -1,0 +1,56 @@
+en:
+  models_and_attributes: &models_and_attributes
+    models:
+      importer:
+        one: Importer
+        other: Importers
+    attributes:
+      importer:
+        attachment: CSV
+        attachment_error: CSV with errors
+        source: Source
+        columns: Columns
+        error: Errors
+
+  activerecord:
+    <<: *models_and_attributes
+  activemodel:
+    <<: *models_and_attributes
+
+  csv_import_magic:
+    importers_controller:
+      create:
+        alert: Please, tell us which columns we can find the information you want.
+      update:
+        notice: File uploaded for processing.
+        alert: Unable to send file for processing, please try again.
+    services:
+      error_label: Errors
+      failure:
+        columns_error:
+          one: 'This missing the following column: %{columns}'
+          other: 'This missing the following columns: %{columns}'
+        records_error: Some record were not imported because they have errors!
+    views:
+      importers:
+        new:
+          title: Importer of %{model_translated}
+          description: Import your records of %{model_translated} in the fast way
+          hint: 'Upload a file <b>CSV</b> with title and headers.'
+          buttons:
+            import: Import
+        edit:
+          title: Adjustment of importater
+          description: Indicate which columns should care
+          ignore_column_label: Ignore column
+          column: Column
+          hint: Choose what type of information this column contains.
+          example_of_values: Example of values
+          buttons:
+            import:
+              one: 'Import %{count} record'
+              other: 'Import %{count} records'
+            cancel: Cancel
+  errors:
+    messages:
+      uniq: should be unique

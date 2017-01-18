@@ -13,7 +13,7 @@ RSpec.describe CsvImportMagic::Failure, type: :service do
         expect do
           subject.generate
           import.reload
-        end.to change(import, :error).from(nil).to('Alguns registro não foram importados pois possuem erros!')
+        end.to change(import, :error).from(nil).to('Alguns registros não foram importados pois contém erros!')
 
         expect(import.attachment_error).to be_present
       end
@@ -27,7 +27,7 @@ RSpec.describe CsvImportMagic::Failure, type: :service do
         expect do
           subject.generate
           import.reload
-        end.to change(import, :error).from(nil).to('Esta faltando as seguintes colunas: Nome')
+        end.to change(import, :error).from(nil).to('Esta faltando a coluna Nome')
 
         expect(import.attachment_error).to be_blank
       end

@@ -25,6 +25,12 @@ module CsvImportMagic
         migration_template 'migration.rb', "db/migrate/create_#{table_name}.rb"
       end
 
+      desc "Creates a CSV Import Magic locales to your application."
+
+      def copy_locale
+        template '../../../config/locales/en.yml', 'config/locales/csv_import_magic.en.yml'
+      end
+
       def self.next_migration_number(dir)
         Time.now.utc.strftime("%Y%m%d%H%M%S")
       end
