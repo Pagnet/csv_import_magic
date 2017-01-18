@@ -35,10 +35,19 @@ module CsvImportMagic
       end
     end
 
+    class LayoutViewsGenerator < Rails::Generators::Base #:nodoc:
+      source_root File.expand_path("../../../../app/views", __FILE__)
+      desc "Copies shared Csv Magic Import Layout to your application."
+
+      def copy_views
+        directory :layouts, 'app/views/layouts'
+      end
+    end
+
     class SharedViewsGenerator < Rails::Generators::Base #:nodoc:
       include ViewPathTemplates
       source_root File.expand_path("../../templates/views", __FILE__)
-      desc "Copies shared Csv Magic Import views to your application."
+      desc "Copies shared Csv Magic Import Partial views to your application."
       hide!
 
       def copy_views
@@ -49,6 +58,8 @@ module CsvImportMagic
     class ViewsGenerator < Rails::Generators::Base
       desc "Copies CSV Import Magic views to your application."
       argument :scope, required: true, default: nil, desc: "The scope to copy views to"
+
+      invoke LayoutViewsGenerator
       invoke SharedViewsGenerator
     end
   end

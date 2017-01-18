@@ -1,6 +1,6 @@
-class CsvImportMagic::ImportersController < ActionController::Base
+class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
   helper_method :import_file_csv
-  layout 'application'
+  layout 'csv_import_magic'
 
   def create
     @importer = Importer.new(importer_params)

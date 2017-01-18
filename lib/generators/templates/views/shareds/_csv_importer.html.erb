@@ -1,17 +1,19 @@
+<h1 class="page-title"><%= t('csv_import_magic.views.importers.new.title', model_translated: t('activemodel.models.source_value.other')) %></h1>
+
+<h2>
+  <%= t('csv_import_magic.views.importers.new.description', model_translated: t('activemodel.models.source_value.other').downcase) %>
+</h2>
+
 <%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
   <%= f.input :importable_type, as: :hidden, input_html: { value: 'importable_type_value' } %>
   <%= f.input :importable_id, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :source, as: :hidden, input_html: { value: 'source_value' } %>
 
-  <h1 class="modal-title"><%= t('csv_import_magic.views.importers.new.title') %></h1>
-
-  <div>
-    <p><strong><%= t('csv_import_magic.views.importers.new.description') %></strong>:</p>
-    <%= f.input :attachment, as: :file, label: false, required: true %>
-    <p><%= t('csv_import_magic.views.importers.new.hint').html_safe %></p>
+  <div class="form-row">
+    <%= f.input :attachment, as: :file, hint: t('csv_import_magic.views.importers.new.hint').html_safe, required: true %>
   </div>
 
-  <div>
-    <%= f.submit t('csv_import_magic.views.importers.new.buttons.import'), class: 'btn green' %>
+  <div class='form-row actions'>
+    <%= f.submit t('csv_import_magic.views.importers.new.buttons.import'), class: 'button button--primary' %>
   </div>
 <% end %>

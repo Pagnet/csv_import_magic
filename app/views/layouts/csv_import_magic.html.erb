@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <title>Title</title>
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body class="<%= body_class %> csv_import_magic">
+    <%- if flash %>
+      <% flash.each do |key, value| %>
+        <div class="flash-message <%= key %>"><%= value %></div>
+      <% end %>
+    <% end %>
+
+    <div class="wrapper">
+      <main class="<%= yield(:main_class) %>">
+        <div class="container">
+          <%= yield %>
+        </div>
+      </main>
+    </div>
+
+    <%= javascript_include_tag "application" %>
+    <%= yield :javascript %>
+  </body>
+</html>
