@@ -8,6 +8,7 @@ class Importer < ActiveRecord::Base
 
   validates_attachment_content_type :attachment, :attachment_error, content_type: ['text/plain', 'text/csv', 'application/vnd.ms-excel']
   validates :attachment, attachment_presence: true
+  validates :source, presence: true
   validate :has_no_duplicate_columns
 
   belongs_to :importable, polymorphic: true
