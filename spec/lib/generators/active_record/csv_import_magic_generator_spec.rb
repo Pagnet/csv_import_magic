@@ -16,7 +16,7 @@ RSpec.describe ActiveRecord::Generators::CsvImportMagicGenerator, type: :generat
     run_generator
   end
 
-  # after { prepare_destination }
+  after { prepare_destination }
 
   specify 'check structure of model' do
     model_content = <<-EOF

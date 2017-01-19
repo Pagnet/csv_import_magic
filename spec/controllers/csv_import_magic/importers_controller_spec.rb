@@ -88,7 +88,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
       end
 
       it 'enqueue the Importer::EmployeesCSVWorker' do
-        expect(CsvImportMagic::ImporterWorker).to receive(:perform_async).with(importer.id)
+        expect(CsvImportMagic::ImporterWorker).to receive(:perform_async).with(importer_id: importer.id, resources: nil)
         do_action(%w(bairro cidade cod estado nome numero pais rua))
       end
     end

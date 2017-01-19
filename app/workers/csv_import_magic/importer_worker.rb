@@ -4,9 +4,10 @@ module CsvImportMagic
 
     sidekiq_options retry: 1
 
-    def perform(importer_id)
-      csv_parsed = ::CsvImportMagic::Importer.new(importer_id).call
-      CsvImportMagic::Failure.new(csv_parsed, importer_id).generate
+    def perform(options)
+      options.symbolize_keys!
+      csv_parsed = ::CsvImportMagic::Importer.new(options[:importer_id], options[:resources]).call
+      CsvImportMagic::Failure.new(csv_parsed, options[:importer_id]).generate
     end
   end
 end

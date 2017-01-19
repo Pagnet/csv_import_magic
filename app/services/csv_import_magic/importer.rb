@@ -1,11 +1,13 @@
 module CsvImportMagic
   class Importer
-    attr_reader :source_klass, :importer, :csv_parser_class
+    attr_reader :source_klass, :importer, :csv_parser_class, :resources
 
-    def initialize(importer_id)
+    def initialize(importer_id, resources = nil)
       @importer = ::Importer.find(importer_id)
       @source_klass = importer.source_klass
       @csv_parser_class = source_klass.new.csv_parser_name
+      @resources = resources.try(:symbolize_keys!)
+      @model = model_with_relation || @source_klass
     end
 
     def call
@@ -21,8 +23,17 @@ module CsvImportMagic
 
     private
 
+    def model_with_relation
+      return if resources.blank?
+      resources[:model].classify.constantize.find(resources[:id]).send(resources[:relation])
+    end
+
     def csv_parsed
-      @csv_parsed ||= csv_parser_class.new(content: content_with_new_header)
+      model = @model
+
+      @csv_parsed ||= csv_parser_class.new(content: content_with_new_header) do
+        model model
+      end
     end
 
     def content

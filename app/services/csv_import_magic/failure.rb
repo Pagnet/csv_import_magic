@@ -50,14 +50,15 @@ module CsvImportMagic
     end
 
     def append_header(csv)
-      identifier_translated = importer.source_klass.human_attribute_name(identifier)
-      csv << [identifier_translated, I18n.t('csv_import_magic.services.error_label')]
+      csv << rows.first.header.column_names.map do |column_name|
+        importer.source_klass.human_attribute_name(column_name)
+      end + [I18n.t('csv_import_magic.services.error_label')]
     end
 
     def append_records(csv)
       rows.each do |row|
         record = row.model
-        csv << [record.send(identifier), record.errors.full_messages.to_sentence]
+        csv << row.row_array + [record.errors.full_messages.to_sentence]
       end
     end
   end

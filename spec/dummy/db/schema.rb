@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20170112125734) do
 
   create_table "companies", force: :cascade do |t|
+    t.integer "user_id"
     t.string  "name"
     t.string  "street"
     t.string  "number"

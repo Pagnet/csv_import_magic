@@ -24,7 +24,7 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
     @importer = ::Importer.find(params[:id])
 
     if @importer.update(csv_importer_magic_update_params)
-      CsvImportMagic::ImporterWorker.perform_async(@importer.id)
+      CsvImportMagic::ImporterWorker.perform_async({ importer_id: @importer.id, resources: resources })
       redirect_to importer_path(@importer), flash: { notice: t('csv_import_magic.importers_controller.update.notice') }
     else
       errors = @importer.errors.full_messages.to_sentence
@@ -34,6 +34,12 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
   end
 
   private
+
+  def resources
+    method_name = "#{@importer.source}_resources"
+    respond_to?(method_name) ? self.send(method_name) : nil
+  end
+
   def import_file_csv
     @csv ||= begin
       content = open(@importer.attachment.path).read.force_encoding('UTF-8')
