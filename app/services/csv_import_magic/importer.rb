@@ -38,7 +38,7 @@ module CsvImportMagic
 
     def content
       @content ||= begin
-        content = open(importer.attachment.path).read.force_encoding('UTF-8')
+        content = Paperclip.io_adapters.for(@importer.attachment).read.force_encoding('UTF-8')
         content.encode('UTF-8', content.encoding, invalid: :replace, undef: :replace, universal_newline: true)
       end
     end

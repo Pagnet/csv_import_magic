@@ -42,7 +42,7 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
 
   def import_file_csv
     @csv ||= begin
-      content = open(@importer.attachment.path).read.force_encoding('UTF-8')
+      content = Paperclip.io_adapters.for(@importer.attachment).read.force_encoding('UTF-8')
       content = content.encode('UTF-8', content.encoding, invalid: :replace, undef: :replace)
       ::CSV.parse(content, headers: true, col_sep: column_separator)
     end
