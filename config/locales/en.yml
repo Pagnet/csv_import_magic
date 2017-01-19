@@ -51,6 +51,7 @@ en:
           title: Adjustment of importater
           description: Indicate which columns should care
           ignore_column_label: Ignore column
+          empty_values: Empty
           column: Column
           hint: Choose what type of information this column contains.
           example_of_values: Example of values

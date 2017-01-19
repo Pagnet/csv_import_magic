@@ -51,6 +51,7 @@ pt-BR:
           title: Ajuste da importação
           description: Indique quais das colunas devemos utilizar
           ignore_column_label: Ignorar esta coluna
+          empty_values: Vazio
           column: Coluna
           hint: Escolha qual tipo de informação esta coluna tem.
           example_of_values: Exemplo de valores
