@@ -39,6 +39,12 @@ pt-BR:
           hint: 'Envie seu <b>CSV</b> com título e descrição.'
           buttons:
             import: Importar
+        show:
+          title: Importador de %{model_translated}
+          success: Os registros foram importados com sucesso!
+          buttons:
+            back: Voltar
+            error_file: Ver arquivo de erro
         edit:
           title: Ajuste da importação
           description: Indique quais das colunas devemos utilizar

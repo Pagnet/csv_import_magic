@@ -39,6 +39,13 @@ en:
           hint: 'Upload a file <b>CSV</b> with title and headers.'
           buttons:
             import: Import
+        show:
+          title: Importer of %{model_translated}
+          success: Records has been imported!
+          error: 'Contain errors: %{errors}'
+          buttons:
+            back: Back
+            error_file: See error file
         edit:
           title: Adjustment of importater
           description: Indicate which columns should care

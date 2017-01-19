@@ -36,6 +36,22 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
     end
   end
 
+  describe 'GET #show' do
+    let(:importer) { create :importer }
+
+    def do_action
+      get :show, id: importer.id
+    end
+
+    before { do_action }
+
+    it 'return OK' do
+      is_expected.to respond_with(:success)
+      is_expected.to render_template(:show)
+      expect(assigns(:importer)).to eq(importer)
+    end
+  end
+
   describe 'GET #edit' do
     let(:importer) { create :importer }
 

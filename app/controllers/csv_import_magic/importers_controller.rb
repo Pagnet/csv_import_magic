@@ -2,6 +2,10 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
   helper_method :import_file_csv
   layout 'csv_import_magic'
 
+  def show
+    @importer = ::Importer.find(params[:id])
+  end
+
   def create
     @importer = Importer.new(importer_params)
 
