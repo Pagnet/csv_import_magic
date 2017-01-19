@@ -10,7 +10,8 @@ pt-BR:
         attachment_error: Anexo de erro CSV
         source: Fonte
         columns: Colunas
-        error: Erros
+        status: Status
+        message: Messagem
 
   activerecord:
     <<: *models_and_attributes
@@ -26,6 +27,7 @@ pt-BR:
         alert: Não foi possível processar seu arquivo, revise ele e tente novamente.
     services:
       error_label: Erros
+      success: Seus registros foram importados com sucesso!
       failure:
         columns_error:
           one: 'Esta faltando as seguintes colunas: %{columns}'
@@ -41,7 +43,7 @@ pt-BR:
             import: Importar
         show:
           title: Importador de %{model_translated}
-          success: Os registros foram importados com sucesso!
+          waiting: Processando seu arquivo...
           buttons:
             back: Voltar
             error_file: Ver arquivo de erro

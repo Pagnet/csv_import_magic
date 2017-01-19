@@ -11,32 +11,38 @@ module CsvImportMagic
     end
 
     def generate
-      set_message_to_header_error unless csv_parsed.valid_header?
-
-      if rows.present?
-        CSV.open(tmp_failures_file.path, 'wb', col_sep: ';') do |csv|
-          append_header(csv)
-          append_records(csv)
-        end
-
-        set_attachement_error
-      end
+      set_message_to_success
+      set_message_to_header_error
+      set_attachement_error
     end
 
     private
 
+    def set_message_to_success
+      return if !csv_parsed.valid_header? || rows.present?
+
+      importer.update(status: 'success', message: I18n.t('csv_import_magic.services.success'))
+    end
+
     def set_attachement_error
-      importer.attachment_error = tmp_failures_file
-      importer.error = I18n.t('csv_import_magic.services.failure.records_error')
-      importer.save!
+      return if rows.blank?
+
+      CSV.open(tmp_failures_file.path, 'wb', col_sep: ';') do |csv|
+        append_header(csv)
+        append_records(csv)
+      end
+
+      importer.update(status: 'error', message: I18n.t('csv_import_magic.services.failure.records_error'), attachment_error: tmp_failures_file)
     end
 
     def set_message_to_header_error
+      return if csv_parsed.valid_header?
+
       columns_translated = report.missing_columns.map do |column|
         column = importer.source_klass.human_attribute_name(column)
       end.to_sentence
 
-      importer.update(error: I18n.t('csv_import_magic.services.failure.columns_error', columns: columns_translated, count: columns_translated.size))
+      importer.update(status: 'error', message: I18n.t('csv_import_magic.services.failure.columns_error', columns: columns_translated, count: columns_translated.size))
     end
 
     def tmp_failures_file

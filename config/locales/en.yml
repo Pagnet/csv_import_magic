@@ -10,7 +10,8 @@ en:
         attachment_error: CSV with errors
         source: Source
         columns: Columns
-        error: Errors
+        status: Status
+        message: Message
 
   activerecord:
     <<: *models_and_attributes
@@ -26,6 +27,7 @@ en:
         alert: Unable to send file for processing, please try again.
     services:
       error_label: Errors
+      success: Records has been imported!
       failure:
         columns_error:
           one: 'This missing the following column: %{columns}'
@@ -41,8 +43,7 @@ en:
             import: Import
         show:
           title: Importer of %{model_translated}
-          success: Records has been imported!
-          error: 'Contain errors: %{errors}'
+          waiting: Processing your file...
           buttons:
             back: Back
             error_file: See error file

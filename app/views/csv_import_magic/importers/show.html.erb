@@ -2,15 +2,28 @@
   <%= t('csv_import_magic.views.importers.show.title', model_translated: t("activemodel.models.#{@importer.source}.other")) %>
 </h3>
 
-<% if @importer.error.blank? %>
-  <small><%= t('csv_import_magic.views.importers.show.success') %></small>
-  <%= link_to t('csv_import_magic.views.importers.show.buttons.back'), '/', class: 'button button--primary' %>
-<% else %>
-  <small><%= @importer.error %></small>
-
-  <% if @importer.attachment_error.present? %>
-    <%= link_to t('csv_import_magic.views.importers.show.buttons.error_file'), @importer.attachment_error.url, class: 'button button--secondary' %>
+<small id=<%= @importer.status%>>
+  <% if @importer.status == 'pending' %>
+    <%= t('csv_import_magic.views.importers.show.waiting') %>
+  <% else %>
+    <%= @importer.message %>
   <% end %>
+</small>
 
-  <%= link_to t('csv_import_magic.views.importers.show.buttons.back'), '/', class: 'button button--primary' %>
+</br>
+
+<% if @importer.attachment_error.present? %>
+  <%= link_to t('csv_import_magic.views.importers.show.buttons.error_file'), @importer.attachment_error.url, class: 'button button--secondary' %>
 <% end %>
+
+<%= link_to t('csv_import_magic.views.importers.show.buttons.back'), '/', class: 'button button--primary' %>
+
+<script>
+  var loop = setInterval(function(){
+    location.reload();
+
+    if (document.getElementById('pending') == void 0) {
+      clearInterval(loop);
+    }
+  }, 10000);
+</script>

@@ -41,7 +41,8 @@ class CreateImporters < ActiveRecord::Migration
       t.attachment :attachment_error
       t.string :source
       t.string :columns
-      t.string :error
+      t.string :message
+      t.string :status, default: 'pending'
       t.references :importable, polymorphic: true
       t.timestamps null: false
     end
