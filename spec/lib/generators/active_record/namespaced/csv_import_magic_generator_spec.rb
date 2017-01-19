@@ -45,14 +45,19 @@ class Foo::BarParser
 
   model Foo::Bar
 
-  # will update_or_create via :email
-  # identifier :email
+  # will update_or_create via :foo
+  identifier :foo
 
-  # column :email, to: ->(email) { email.downcase }, required: true
-  # column :first_name, as: [ /first.?name/i, /pr(é|e)nom/i ]
-  # column :last_name,  as: [ /last.?name/i, "nom" ]
-  # column :published,  to: ->(published, user) { user.published_at = published ? Time.now : nil }
-
+  # Examples of columns declaration
+  # column :foo, to: ->(foo) { foo.downcase }, required: true
+  # column :foo, as: [ /first.?name/i, /pr(é|e)nom/i ]
+  # column :foo,  as: [ /last.?name/i, "nom" ]
+  # column :foo,  to: ->(foo, record) { record.foo = foo ?  'a' : 'b' }
+  
+  column :foo, required: true
+  
+  column :bar, required: true
+  
   # or :abort
   #  when_invalid :skip
 end
