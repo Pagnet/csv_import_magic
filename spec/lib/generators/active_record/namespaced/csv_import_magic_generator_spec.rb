@@ -3,7 +3,7 @@ require 'generators/active_record/csv_import_magic_generator'
 
 RSpec.describe ActiveRecord::Generators::CsvImportMagicGenerator, type: :generator do
   destination File.expand_path("../../../../../tmp", __FILE__)
-  arguments ['foo::bar']
+  arguments ['foo::bar', '-c', 'foo', 'bar']
 
   before do
     prepare_destination
@@ -19,12 +19,18 @@ RSpec.describe ActiveRecord::Generators::CsvImportMagicGenerator, type: :generat
   after { prepare_destination }
 
   specify 'check structure of model' do
+    model_content = <<-EOF
+class Foo::Bar < ActiveRecord::Base
+  csv_import_magic :foo, :bar
+end
+    EOF
+
     expect(destination_root).to have_structure {
       directory "app" do
         directory "models" do
           directory "foo" do
             file "bar.rb" do
-              contains "csv_import_magic :foo/bar"
+              contains model_content
             end
           end
         end

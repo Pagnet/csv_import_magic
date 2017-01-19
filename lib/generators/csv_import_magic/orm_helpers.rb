@@ -1,8 +1,8 @@
 module CsvImportMagic
   module Generators
     module OrmHelpers
-      def model_contents
-        "  csv_import_magic :#{file_path}"
+      def model_contents(options)
+        "  csv_import_magic :#{options[:columns].join(', :')}"
       end
 
       private

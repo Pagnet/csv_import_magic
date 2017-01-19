@@ -34,6 +34,6 @@ RSpec.describe Importer, type: :model do
 
   context '#importable_columns' do
     let(:importer) { create(:importer, source: 'company') }
-    it { expect(importer.importable_columns).to eq(%w(id name street number neighborhood city state country active)) }
+    it { expect(importer.importable_columns).to match_array([:name, :street, :number, :neighborhood, :city, :state, :country]) }
   end
 end

@@ -4,9 +4,10 @@ require 'generators/csv_import_magic/orm_helpers'
 module ActiveRecord
   module Generators
     class CsvImportMagicGenerator < ActiveRecord::Generators::Base
-      include CsvImportMagic::Generators::OrmHelpers
-
       source_root File.expand_path("../templates", __FILE__)
+      class_option :columns, aliases: '-c', type: :array, required: true, desc: "Select specific columns yout want parser"
+
+      include CsvImportMagic::Generators::OrmHelpers
 
       def generate_model
         invoke "active_record:model", [name], migration: false unless model_exists? && behavior == :invoke
@@ -21,7 +22,7 @@ module ActiveRecord
       end
 
       def inject_csv_import_magic_content
-        content = model_contents
+        content = model_contents(options)
         class_path = [class_name]
 
         indent_depth = class_path.size - 1
