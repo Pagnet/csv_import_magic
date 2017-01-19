@@ -26,7 +26,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     <%= csrf_meta_tags %>
   </head>
 
-  <body class="<%= body_class %> csv_import_magic">
+  <body class="csv_import_magic">
     <%- if flash %>
       <% flash.each do |key, value| %>
         <div class="flash-message <%= key %>"><%= value %></div>
@@ -34,7 +34,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     <% end %>
 
     <div class="wrapper">
-      <main class="<%= yield(:main_class) %>">
+      <main>
         <div class="container">
           <%= yield %>
         </div>
@@ -62,11 +62,11 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
 
   specify 'check structure of partial view' do
     partial_view_content = <<-EOF
-<h1 class="page-title"><%= t('csv_import_magic.views.importers.new.title', model_translated: t('activemodel.models.foo.other')) %></h1>
-
-<h2>
-  <%= t('csv_import_magic.views.importers.new.description', model_translated: t('activemodel.models.foo.other').downcase) %>
-</h2>
+<h1 class="page-title">
+  <%= t('csv_import_magic.views.importers.new.title', model_translated: t('activemodel.models.foo.other')) %>
+  <br/>
+  <small><%= t('csv_import_magic.views.importers.new.description', model_translated: t('activemodel.models.foo.other').downcase) %></small>
+</h1>
 
 <%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
   <%= f.input :importable_type, as: :hidden, input_html: { value: 'Bar' } %>

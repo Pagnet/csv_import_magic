@@ -10,7 +10,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body class="<%= body_class %> csv_import_magic">
+  <body class="csv_import_magic">
     <%- if flash %>
       <% flash.each do |key, value| %>
         <div class="flash-message <%= key %>"><%= value %></div>
@@ -18,7 +18,7 @@
     <% end %>
 
     <div class="wrapper">
-      <main class="<%= yield(:main_class) %>">
+      <main>
         <div class="container">
           <%= yield %>
         </div>

@@ -1,8 +1,8 @@
-<h1 class="page-title"><%= t('csv_import_magic.views.importers.new.title', model_translated: t('activemodel.models.source_value.other')) %></h1>
-
-<h2>
-  <%= t('csv_import_magic.views.importers.new.description', model_translated: t('activemodel.models.source_value.other').downcase) %>
-</h2>
+<h1 class="page-title">
+  <%= t('csv_import_magic.views.importers.new.title', model_translated: t('activemodel.models.source_value.other')) %>
+  <br/>
+  <small><%= t('csv_import_magic.views.importers.new.description', model_translated: t('activemodel.models.source_value.other').downcase) %></small>
+</h1>
 
 <%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
   <%= f.input :importable_type, as: :hidden, input_html: { value: 'importable_type_value' } %>
