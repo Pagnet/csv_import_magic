@@ -7,12 +7,6 @@ module CsvImportMagic
 
       source_root File.expand_path("../../templates", __FILE__)
 
-      desc "Creates a CSV Import Magic initializer to your application."
-
-      def copy_initializer
-        template 'csv_import_magic.rb', 'config/initializers/csv_import_magic.rb'
-      end
-
       desc "Creates a routes to your application."
 
       class_option :routes, desc: "Generate routes", type: :boolean, default: true

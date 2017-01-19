@@ -74,26 +74,4 @@ end
       end
     }
   end
-
-  specify 'check structure of initializer' do
-    initializer_content = <<-EOF
-CsvImportMagic.setup do |config|
-  # When importer has errors, redirect for this path
-  config.after_create_redirect_with_error = '/'
-
-  # When importer has imported with success, redirect for this path
-  config.after_update_redirect_with_success = '/'
-end
-    EOF
-
-    expect(destination_root).to have_structure {
-      directory "config" do
-        directory "initializers" do
-          file "csv_import_magic.rb" do
-            contains initializer_content
-          end
-        end
-      end
-    }
-  end
 end

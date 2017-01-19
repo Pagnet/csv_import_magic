@@ -13,7 +13,7 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
       redirect_to edit_importer_path(@importer), alert: t('csv_import_magic.importers_controller.create.alert')
     end
   rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
-    redirect_to CsvImportMagic.after_create_redirect_with_error, flash: { error: e.message }
+    redirect_to request.referrer, flash: { error: e.message }
   end
 
   def edit
@@ -25,7 +25,7 @@ class CsvImportMagic::ImportersController < CsvImportMagic::BaseController
 
     if @importer.update(csv_importer_magic_update_params)
       CsvImportMagic::ImporterWorker.perform_async(@importer.id)
-      redirect_to CsvImportMagic.after_update_redirect_with_success, flash: { notice: t('csv_import_magic.importers_controller.update.notice') }
+      redirect_to importer_path(@importer), flash: { notice: t('csv_import_magic.importers_controller.update.notice') }
     else
       errors = @importer.errors.full_messages.to_sentence
       flash[:alert] = errors.present? ? errors : t('csv_import_magic.importers_controller.update.alert')

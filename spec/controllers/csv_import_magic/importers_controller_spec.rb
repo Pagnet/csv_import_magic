@@ -27,10 +27,9 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
       let(:attachment) { nil }
 
       it 'render to edit with error' do
-        CsvImportMagic.after_create_redirect_with_error = '/'
-
+        @request.env['HTTP_REFERER'] = 'http://example.com'
         do_action
-        expect(response).to redirect_to(CsvImportMagic.after_create_redirect_with_error)
+        expect(response).to redirect_to('http://example.com')
         expect(flash[:error]).to eq('A validação falhou: Anexo CSV não pode ficar em branco')
       end
     end
@@ -83,10 +82,8 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
       end
 
       it 'redirect back to employees index' do
-        CsvImportMagic.after_update_redirect_with_success = '/'
-
         do_action(%w(bairro cidade cod estado nome numero pais rua))
-        expect(response).to redirect_to(CsvImportMagic.after_update_redirect_with_success)
+        expect(response).to redirect_to(importer_path(importer))
         expect(flash[:notice]).to eq('Arquivo enviado para processamento.')
       end
 
