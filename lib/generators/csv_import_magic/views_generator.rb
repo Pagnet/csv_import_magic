@@ -39,8 +39,12 @@ module CsvImportMagic
       source_root File.expand_path("../../../../app/views", __FILE__)
       desc "Copies shared Csv Magic Import Layout to your application."
 
-      def copy_views
+      def copy_layout_views
         directory :layouts, 'app/views/layouts'
+      end
+
+      def copy_views
+        directory 'csv_import_magic/importers', 'app/views/csv_import_magic/importers'
       end
     end
 

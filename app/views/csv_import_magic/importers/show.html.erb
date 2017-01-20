@@ -11,6 +11,10 @@
     <% end %>
   </div>
 
+  <% if @importer.status == 'pending' %>
+    <span class='loading'></span>
+  <% end %>
+
   <% if @importer.attachment_error.present? %>
     <%= link_to t('csv_import_magic.views.importers.show.buttons.error_file'), @importer.attachment_error.url, class: 'button button--secondary' %>
   <% end %>
@@ -22,6 +26,6 @@
   if (document.getElementById('pending') != void 0) {
     setInterval(function(){
       location.reload();
-    }, 10000);
+    }, 5000);
   }
 </script>

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = CsvImportMagic::VERSION
   s.authors     = ["Saulo Santiago"]
   s.email       = ["saulodasilvasantiago@gmail.com"]
-  s.homepage    = "https://github.com/Pagnet/csv_import_magic"
+  s.homepage    = "https://github.com/Pagnet/csv_import_magic.git"
   s.summary     = "Engine for import CSV dynamically by model"
   s.description = "Engine for import CSV dynamically by model"
   s.license     = "MIT"
