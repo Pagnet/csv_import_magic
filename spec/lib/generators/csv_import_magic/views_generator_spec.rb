@@ -3,7 +3,7 @@ require 'generators/csv_import_magic/views_generator'
 
 RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
   destination File.expand_path("../../../../../tmp", __FILE__)
-  arguments ['foo', '-i', 'bar']
+  arguments ['foo']
 
   before do
     prepare_destination
@@ -181,7 +181,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
 </h1>
 
 <%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
-  <%= f.input :importable_type, as: :hidden, input_html: { value: 'Bar' } %>
+  <%= f.input :importable_type, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :importable_id, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :source, as: :hidden, input_html: { value: 'foo' } %>
 

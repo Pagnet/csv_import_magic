@@ -12,25 +12,38 @@ class Importer < ActiveRecord::Base
   validates_inclusion_of :status, in: STATUS
   validates :attachment, attachment_presence: true
   validates :source, presence: true
-  validate :has_no_duplicate_columns
+  validate :check_columns
 
   belongs_to :importable, polymorphic: true
 
+  before_validation :set_parser
+
   def source_klass
+    return if source.blank?
     source.classify.constantize
   end
 
-  def importable_columns
-    source_klass.columns_names
+  def parser_klass
+    parser.classify.constantize
+  end
+
+  def importable_columns(name_of_parser = parser)
+    source_klass.columns_names(name_of_parser.to_sym)
   end
 
   private
 
-  def has_no_duplicate_columns
+  def set_parser
+    return if source_klass.blank? || parser.present?
+    self.parser = source_klass.csv_parser_default_name
+  end
+
+  def check_columns
     return if columns.empty?
 
     headers = columns.clone
     headers.delete('ignore')
     errors.add(:columns, :uniq) if headers.size != headers.uniq.size
+    errors.add(:columns, :missing) if headers.uniq.size != importable_columns(parser).size
   end
 end

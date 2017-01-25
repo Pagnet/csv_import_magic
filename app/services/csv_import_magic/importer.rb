@@ -5,7 +5,7 @@ module CsvImportMagic
     def initialize(importer_id, resources = nil)
       @importer = ::Importer.find(importer_id)
       @source_klass = importer.source_klass
-      @csv_parser_class = source_klass.new.csv_parser_name
+      @csv_parser_class = importer.parser_klass
       @resources = resources.try(:symbolize_keys!)
       @model = model_with_relation || @source_klass
     end

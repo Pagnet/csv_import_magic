@@ -5,7 +5,7 @@
 </h1>
 
 <%= simple_form_for(Importer.new, url: csv_import_magic.importers_path) do |f| %>
-  <%= f.input :importable_type, as: :hidden, input_html: { value: 'importable_type_value' } %>
+  <%= f.input :importable_type, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :importable_id, as: :hidden, input_html: { value: '<change this value>' } %>
   <%= f.input :source, as: :hidden, input_html: { value: 'source_value' } %>
 

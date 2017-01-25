@@ -52,7 +52,6 @@ $ rails generate csv_import_magic:views scope -i importable
 
 If need specify scope.
 Scope is name of folder views inside `app/views`.
-This options `-i` add importable value into form.
 
 ### Configuring base controller
 

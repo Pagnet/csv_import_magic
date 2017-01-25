@@ -35,6 +35,7 @@ class CreateImporters < ActiveRecord::Migration[5.1]
       t.attachment :attachment
       t.attachment :attachment_error
       t.string :source
+      t.string :parser
       t.string :columns
       t.string :message
       t.string :status, default: 'pending'

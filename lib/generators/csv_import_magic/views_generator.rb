@@ -17,11 +17,6 @@ module CsvImportMagic
       def view_directory(name)
         directory name.to_s, target_path do |content|
           content = content.gsub('source_value', scope)
-
-          if options[:importable_type].present?
-            content = content.gsub('importable_type_value', options[:importable_type].camelize)
-          end
-
           content
         end
       end

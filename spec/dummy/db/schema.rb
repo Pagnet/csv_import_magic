@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170112125734) do
     t.integer  "attachment_error_file_size"
     t.datetime "attachment_error_updated_at"
     t.string   "source"
+    t.string   "parser"
     t.string   "columns"
     t.string   "message"
     t.string   "status",                        default: "pending"

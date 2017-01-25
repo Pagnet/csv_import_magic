@@ -15,9 +15,10 @@ RSpec.describe Importer, type: :model do
                 allowing('text/plain', 'text/csv', 'application/vnd.ms-excel').
                 rejecting('image/png', 'image/gif', 'text/xml') }
 
-    context '#has_no_duplicate_columns' do
+    context '#columns' do
       it 'not accept the same column name unless is ignore' do
-        expect(build(:importer, columns: %w(ignore ignore foo bar))).to be_valid
+        expect(build(:importer, columns: %w(name street number neighborhood city state country))).to be_valid
+        expect(build(:importer, columns: %w(ignore ignore foo bar))).to be_invalid
         expect(build(:importer, columns: %w(ignore ignore foo foo))).to be_invalid
       end
     end
@@ -25,6 +26,27 @@ RSpec.describe Importer, type: :model do
 
   describe 'associations' do
     it { is_expected.to belong_to(:importable) }
+  end
+
+  describe 'callbacks' do
+    context '.before_validation #set_parser' do
+      let(:importer) { build(:importer, parser: nil) }
+
+      it 'set default parser when nil' do
+        expect do
+          importer.save
+          importer.reload
+        end.to change(importer, :parser).from(nil).to('company_parser')
+      end
+
+      it 'not change when parser is present' do
+        expect do
+          importer.parser = 'foo'
+          importer.save
+          importer.reload
+        end.to change(importer, :parser).to('foo')
+      end
+    end
   end
 
   context '#source_klass' do
