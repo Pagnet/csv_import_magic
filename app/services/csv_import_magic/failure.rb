@@ -12,7 +12,6 @@ module CsvImportMagic
 
     def generate
       set_message_to_success
-      set_message_to_header_error
       set_attachement_error
     end
 
@@ -33,16 +32,6 @@ module CsvImportMagic
       end
 
       importer.update(status: 'error', message: I18n.t('csv_import_magic.services.failure.records_error'), attachment_error: tmp_failures_file)
-    end
-
-    def set_message_to_header_error
-      return if csv_parsed.valid_header?
-
-      columns_translated = report.missing_columns.map do |column|
-        column = importer.source_klass.human_attribute_name(column)
-      end.to_sentence
-
-      importer.update(status: 'error', message: I18n.t('csv_import_magic.services.failure.columns_error', columns: columns_translated, count: columns_translated.size))
     end
 
     def tmp_failures_file

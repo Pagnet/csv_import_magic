@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Importer, type: :model do
   describe 'validations' do
+    subject { build(:importer, parser: 'company_parser') }
+
     it { is_expected.to validate_presence_of(:source) }
     it { is_expected.to validate_inclusion_of(:status).in_array(['pending', 'success', 'error']) }
     it { is_expected.to have_attached_file(:attachment) }
@@ -15,11 +17,22 @@ RSpec.describe Importer, type: :model do
                 allowing('text/plain', 'text/csv', 'application/vnd.ms-excel').
                 rejecting('image/png', 'image/gif', 'text/xml') }
 
-    context '#columns' do
+    context '#uniqueness_columns' do
       it 'not accept the same column name unless is ignore' do
-        expect(build(:importer, columns: %w(name street number neighborhood city state country))).to be_valid
-        expect(build(:importer, columns: %w(ignore ignore foo bar))).to be_invalid
-        expect(build(:importer, columns: %w(ignore ignore foo foo))).to be_invalid
+        expect(build(:importer, columns: %w(name number city state))).to be_valid
+        expect(build(:importer, columns: %w(name number city state state))).to be_invalid
+      end
+    end
+
+    context '#required_columns' do
+      it 'not accept no select columns are required' do
+        importer = create(:importer, columns: [])
+
+        importer.columns = %w(name number city state)
+        expect(importer).to be_valid
+
+        importer.columns = %w(name number city ignore)
+        expect(importer).to be_invalid
       end
     end
   end
@@ -40,11 +53,14 @@ RSpec.describe Importer, type: :model do
       end
 
       it 'not change when parser is present' do
+        class Foo
+        end
+
         expect do
-          importer.parser = 'foo'
+          importer.parser = 'foo_parser'
           importer.save
           importer.reload
-        end.to change(importer, :parser).to('foo')
+        end.to change(importer, :parser).to('foo_parser')
       end
     end
   end

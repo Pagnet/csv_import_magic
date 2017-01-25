@@ -6,10 +6,10 @@ class CompanyParser
   identifier :name
 
   column :name, required: true
-  column :street
   column :number, required: true
-  column :neighborhood
   column :city, required: true
   column :state, required: true
+  column :street
+  column :neighborhood
   column :country
 end

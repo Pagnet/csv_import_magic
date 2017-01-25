@@ -69,7 +69,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
   end
 
   describe 'PUT #update' do
-    let(:importer) { create :importer }
+    let(:importer) { create :importer, columns: [] }
 
     def do_action(columns)
       put :update, id: importer.id, importer: { columns: columns }
@@ -77,29 +77,29 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
 
     context 'with valid columns' do
       it 'update the importer columns list' do
-        do_action(%w(bairro cidade cod estado nome numero pais rua))
-        expect(importer.reload.columns).to eq(%w(bairro cidade cod estado nome numero pais rua))
+        do_action(%w(neighborhood city cod state name number country street))
+        expect(importer.reload.columns).to eq(%w(neighborhood city cod state name number country street))
       end
 
       it 'redirect back to employees index' do
-        do_action(%w(bairro cidade cod estado nome numero pais rua))
+        do_action(%w(neighborhood city cod state name number country street))
         expect(response).to redirect_to(importer_path(importer))
         expect(flash[:notice]).to eq('Arquivo enviado para processamento.')
       end
 
       it 'enqueue the Importer::EmployeesCSVWorker' do
         expect(CsvImportMagic::ImporterWorker).to receive(:perform_async).with(importer_id: importer.id, resources: nil)
-        do_action(%w(bairro cidade cod estado nome numero pais rua))
+        do_action(%w(neighborhood city cod state name number country street))
       end
     end
 
     context 'with invalid columns' do
       it 'render the edit screen' do
-        do_action(%w(bairro cidade cod estado nome nome numero pais rua))
+        do_action(%w(neighborhood city cod state name name number country street))
         is_expected.to respond_with(:success)
         is_expected.to render_template(:edit)
         expect(assigns(:importer)).to eq(importer)
-        expect(flash[:alert]).to eq('Colunas devem ser únicas')
+        expect(flash[:alert]).to eq('Colunas Nome deve ser única')
       end
     end
   end

@@ -62,4 +62,9 @@ pt-BR:
             cancel: Cancelar
   errors:
     messages:
-      uniq: devem ser únicas
+      uniq:
+        one: '%{columns} deve ser única'
+        other: '%{columns} devem ser únicas'
+      missing:
+        one: '%{columns} não foi selecionada'
+        other: '%{columns} não foram selecionadas'

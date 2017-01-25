@@ -62,4 +62,9 @@ en:
             cancel: Cancel
   errors:
     messages:
-      uniq: should be unique
+      uniq:
+        one: '%{columns} should be unique'
+        other: '%{columns} should be unique'
+      missing:
+        one: '%{columns} is missing'
+        other: '%{columns} are missing'
