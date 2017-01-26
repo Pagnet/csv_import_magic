@@ -16,7 +16,7 @@ RSpec.describe CsvImportMagic::Models, type: :lib do
     end
 
     describe '#csv_parser_names' do
-      it { expect(foo_model.new.csv_parser_names).to eq({'foo_parser' => FooParser}) }
+      it { expect(foo_model.new.csv_parser_names).to eq('foo_parser' => FooParser) }
     end
 
     describe '#columns_names' do
@@ -40,7 +40,7 @@ RSpec.describe CsvImportMagic::Models, type: :lib do
     end
 
     describe '#csv_parser_names' do
-      it { expect(bar_model.new.csv_parser_names).to eq({'foo_parser' => FooParser, 'bar_parser' => BarParser}) }
+      it { expect(bar_model.new.csv_parser_names).to eq('foo_parser' => FooParser, 'bar_parser' => BarParser) }
     end
 
     describe '#columns_names' do

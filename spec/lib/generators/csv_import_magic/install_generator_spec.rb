@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'generators/csv_import_magic/install_generator'
 
 RSpec.describe CsvImportMagic::Generators::InstallGenerator, type: :generator do
-  destination File.expand_path("../../../../../tmp", __FILE__)
+  destination File.expand_path('../../../../../tmp', __FILE__)
 
   before do
     travel_to Time.zone.parse('20170101235959')
@@ -10,7 +10,7 @@ RSpec.describe CsvImportMagic::Generators::InstallGenerator, type: :generator do
 
     FileUtils.mkdir_p('tmp/config')
 
-    out_file = File.new(File.join(ENGINE_RAILS_ROOT, "tmp/config/routes.rb"), "w+")
+    out_file = File.new(File.join(ENGINE_RAILS_ROOT, 'tmp/config/routes.rb'), 'w+')
     out_file.puts("Rails.application.routes.draw do\nend")
     out_file.close
 
@@ -24,8 +24,8 @@ RSpec.describe CsvImportMagic::Generators::InstallGenerator, type: :generator do
 
   specify 'check structure of routes' do
     expect(destination_root).to have_structure {
-      directory "config" do
-        file "routes.rb" do
+      directory 'config' do
+        file 'routes.rb' do
           contains "mount CsvImportMagic::Engine => '/csv_import_magic'"
         end
       end
@@ -54,10 +54,10 @@ end
     EOF
 
     expect(destination_root).to have_structure {
-      directory "db" do
-        directory "migrate" do
-          file "20170101235959_create_importers.rb"
-          migration "create_importers" do
+      directory 'db' do
+        directory 'migrate' do
+          file '20170101235959_create_importers.rb'
+          migration 'create_importers' do
             contains migration_content
           end
         end
@@ -67,10 +67,10 @@ end
 
   specify 'check structure of locale' do
     expect(destination_root).to have_structure {
-      directory "config" do
-        directory "locales" do
-          file "csv_import_magic.en.yml" do
-            contains  'en:'
+      directory 'config' do
+        directory 'locales' do
+          file 'csv_import_magic.en.yml' do
+            contains 'en:'
           end
         end
       end

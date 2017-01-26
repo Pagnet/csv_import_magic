@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'generators/csv_import_magic/views_generator'
 
 RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
-  destination File.expand_path("../../../../../tmp", __FILE__)
+  destination File.expand_path('../../../../../tmp', __FILE__)
   arguments ['foo']
 
   before do
@@ -48,11 +48,11 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     EOF
 
     expect(destination_root).to have_structure {
-      directory "app" do
-        directory "views" do
-          directory "csv_import_magic" do
-            directory "importers" do
-              file "show.html.erb" do
+      directory 'app' do
+        directory 'views' do
+          directory 'csv_import_magic' do
+            directory 'importers' do
+              file 'show.html.erb' do
                 contains show_content
               end
             end
@@ -64,7 +64,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
 
   specify 'check structure of edit view' do
     edit_content = <<-EOF
-<% columns = @importer.importable_columns.map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
+<% columns = @importer.importable_columns(@importer.parser).map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
 
 <h3 class='page-title'>
   <%= t('csv_import_magic.views.importers.edit.title') %>
@@ -101,20 +101,14 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     </div>
     <% end %>
   </div>
-
-  <div class="form-row actions">
-    <%= link_to t('csv_import_magic.views.importers.edit.buttons.cancel'), 'javascript:history.back()', class: 'button button--secondary' %>
-    <%= f.submit t('csv_import_magic.views.importers.edit.buttons.import', count: import_file_csv.count), class: 'button button--primary' %>
-  </div>
-<% end %>
     EOF
 
     expect(destination_root).to have_structure {
-      directory "app" do
-        directory "views" do
-          directory "csv_import_magic" do
-            directory "importers" do
-              file "edit.html.erb" do
+      directory 'app' do
+        directory 'views' do
+          directory 'csv_import_magic' do
+            directory 'importers' do
+              file 'edit.html.erb' do
                 contains edit_content
               end
             end
@@ -160,10 +154,10 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     EOF
 
     expect(destination_root).to have_structure {
-      directory "app" do
-        directory "views" do
-          directory "layouts" do
-            file "csv_import_magic.html.erb" do
+      directory 'app' do
+        directory 'views' do
+          directory 'layouts' do
+            file 'csv_import_magic.html.erb' do
               contains layout_content
             end
           end
@@ -196,10 +190,10 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
     EOF
 
     expect(destination_root).to have_structure {
-      directory "app" do
-        directory "views" do
-          directory "foos" do
-            file "_csv_importer.html.erb" do
+      directory 'app' do
+        directory 'views' do
+          directory 'foos' do
+            file '_csv_importer.html.erb' do
               contains partial_view_content
             end
           end

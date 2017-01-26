@@ -3,7 +3,7 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 Bundler.require(*Rails.groups)
-require "csv_import_magic"
+require 'csv_import_magic'
 
 module Dummy
   class Application < Rails::Application
@@ -24,4 +24,3 @@ module Dummy
     # config.autoload_paths << Rails.root.join('app/csv_parsers')
   end
 end
-

@@ -5,13 +5,15 @@ source 'https://rubygems.org'
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'pry'
-gem 'fuubar'
-gem 'rspec-rails'
-gem 'factory_girl_rails'
 gem 'database_cleaner'
-gem 'shoulda-matchers'
+gem 'factory_girl_rails'
+gem 'fuubar'
 gem 'generator_spec'
+gem 'pry'
+gem 'rspec-rails'
+gem 'rubocop'
+gem 'shoulda-matchers'
+gem 'sqlite3'
 gem 'simplecov', require: false
 
 # Declare any dependencies that are still in development here instead of in
@@ -21,4 +23,3 @@ gem 'simplecov', require: false
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-

@@ -5,17 +5,21 @@ RSpec.describe Importer, type: :model do
     subject { build(:importer, parser: 'company_parser') }
 
     it { is_expected.to validate_presence_of(:source) }
-    it { is_expected.to validate_inclusion_of(:status).in_array(['pending', 'success', 'error']) }
+    it { is_expected.to validate_inclusion_of(:status).in_array(%w(pending success error)) }
     it { is_expected.to have_attached_file(:attachment) }
     it { is_expected.to validate_attachment_presence(:attachment) }
-    it { is_expected.to validate_attachment_content_type(:attachment).
-                allowing('text/plain', 'text/csv', 'application/vnd.ms-excel').
-                rejecting('image/png', 'image/gif', 'text/xml') }
+    it do
+      is_expected.to validate_attachment_content_type(:attachment)
+        .allowing('text/plain', 'text/csv', 'application/vnd.ms-excel')
+        .rejecting('image/png', 'image/gif', 'text/xml')
+    end
 
     it { is_expected.to have_attached_file(:attachment_error) }
-    it { is_expected.to validate_attachment_content_type(:attachment_error).
-                allowing('text/plain', 'text/csv', 'application/vnd.ms-excel').
-                rejecting('image/png', 'image/gif', 'text/xml') }
+    it do
+      is_expected.to validate_attachment_content_type(:attachment_error)
+        .allowing('text/plain', 'text/csv', 'application/vnd.ms-excel')
+        .rejecting('image/png', 'image/gif', 'text/xml')
+    end
 
     context '#uniqueness_columns' do
       it 'not accept the same column name unless is ignore' do

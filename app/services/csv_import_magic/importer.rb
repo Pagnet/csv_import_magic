@@ -44,7 +44,7 @@ module CsvImportMagic
     end
 
     def content_with_new_header
-      new_header = importer.columns.join("#{column_separator}")
+      new_header = importer.columns.join(column_separator.to_s)
 
       body = content.lines[1..-1].join
       body.prepend(new_header + "\n")

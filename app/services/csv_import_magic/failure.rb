@@ -35,7 +35,7 @@ module CsvImportMagic
     end
 
     def tmp_failures_file
-      @file ||= Tempfile.new(["failures", '.csv'])
+      @file ||= Tempfile.new(['failures', '.csv'])
     end
 
     def append_header(csv)

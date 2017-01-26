@@ -5,13 +5,13 @@ module CsvImportMagic
         names_of_parsers = {}
 
         options.each do |key, _value|
-          names_of_parsers["#{key.to_s}_parser"] = "#{key.to_s.classify}Parser".constantize
+          names_of_parsers["#{key}_parser"] = "#{key.to_s.classify}Parser".constantize
         end
 
         names_of_parsers
       end
 
-      define_singleton_method(:csv_parser_default_name) { "#{self.name.to_s.underscore}_parser" }
+      define_singleton_method(:csv_parser_default_name) { "#{name.to_s.underscore}_parser" }
       define_singleton_method(:columns_names) { |param| options[param.to_s.remove('_parser').to_sym] }
     end
   end

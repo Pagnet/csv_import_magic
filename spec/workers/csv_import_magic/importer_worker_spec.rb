@@ -19,13 +19,13 @@ RSpec.describe CsvImportMagic::ImporterWorker, type: :worker do
 
     it 'calls CsvImportMagic::Importer service' do
       expect(CsvImportMagic::Importer).to receive(:new).with(importer.id, nil).and_return(service)
-      worker.perform({importer_id: importer.id, resources: nil})
+      worker.perform(importer_id: importer.id, resources: nil)
     end
 
     it 'calls CsvImportMagic::Failure service' do
       expect(CsvImportMagic::Failure).to receive(:new).with(csv_parsed, importer.id).and_return(failures)
       expect(failures).to receive(:generate)
-      worker.perform({importer_id: importer.id, resources: nil})
+      worker.perform(importer_id: importer.id, resources: nil)
     end
   end
 end

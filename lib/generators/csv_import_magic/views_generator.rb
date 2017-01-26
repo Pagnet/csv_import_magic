@@ -7,9 +7,9 @@ module CsvImportMagic
 
       included do
         argument :scope, required: true, default: nil,
-                         desc: "The scope to copy views to"
+                         desc: 'The scope to copy views to'
 
-        class_option :importable_type, aliases: "-i", type: :string, desc: "Select specific importable to importer_csv partial form"
+        class_option :importable_type, aliases: '-i', type: :string, desc: 'Select specific importable to importer_csv partial form'
       end
 
       protected
@@ -31,8 +31,8 @@ module CsvImportMagic
     end
 
     class LayoutViewsGenerator < Rails::Generators::Base #:nodoc:
-      source_root File.expand_path("../../../../app/views", __FILE__)
-      desc "Copies shared Csv Magic Import Layout to your application."
+      source_root File.expand_path('../../../../app/views', __FILE__)
+      desc 'Copies shared Csv Magic Import Layout to your application.'
 
       def copy_layout_views
         directory :layouts, 'app/views/layouts'
@@ -45,8 +45,8 @@ module CsvImportMagic
 
     class SharedViewsGenerator < Rails::Generators::Base #:nodoc:
       include ViewPathTemplates
-      source_root File.expand_path("../../templates/views", __FILE__)
-      desc "Copies shared Csv Magic Import Partial views to your application."
+      source_root File.expand_path('../../templates/views', __FILE__)
+      desc 'Copies shared Csv Magic Import Partial views to your application.'
       hide!
 
       def copy_views
@@ -55,8 +55,8 @@ module CsvImportMagic
     end
 
     class ViewsGenerator < Rails::Generators::Base
-      desc "Copies CSV Import Magic views to your application."
-      argument :scope, required: true, default: nil, desc: "The scope to copy views to"
+      desc 'Copies CSV Import Magic views to your application.'
+      argument :scope, required: true, default: nil, desc: 'The scope to copy views to'
 
       invoke LayoutViewsGenerator
       invoke SharedViewsGenerator

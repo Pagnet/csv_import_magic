@@ -5,11 +5,11 @@ module CsvImportMagic
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
 
-      source_root File.expand_path("../../templates", __FILE__)
+      source_root File.expand_path('../../templates', __FILE__)
 
-      desc "Creates a routes to your application."
+      desc 'Creates a routes to your application.'
 
-      class_option :routes, desc: "Generate routes", type: :boolean, default: true
+      class_option :routes, desc: 'Generate routes', type: :boolean, default: true
 
       def add_csv_import_magic_routes
         route "mount CsvImportMagic::Engine => '/csv_import_magic'"
@@ -19,14 +19,14 @@ module CsvImportMagic
         migration_template 'migration.rb', "db/migrate/create_#{table_name}.rb"
       end
 
-      desc "Creates a CSV Import Magic locales to your application."
+      desc 'Creates a CSV Import Magic locales to your application.'
 
       def copy_locale
         template '../../../config/locales/en.yml', 'config/locales/csv_import_magic.en.yml'
       end
 
-      def self.next_migration_number(dir)
-        Time.now.utc.strftime("%Y%m%d%H%M%S")
+      def self.next_migration_number(_dir)
+        Time.now.utc.strftime('%Y%m%d%H%M%S')
       end
 
       def table_name
@@ -34,7 +34,7 @@ module CsvImportMagic
       end
 
       def migration_data
-<<RUBY
+        <<RUBY
       t.attachment :attachment
       t.attachment :attachment_error
       t.string :source
@@ -51,9 +51,7 @@ RUBY
       end
 
       def migration_version
-        if rails5?
-          "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]"
-        end
+        "[#{Rails::VERSION::MAJOR}.#{Rails::VERSION::MINOR}]" if rails5?
       end
     end
   end

@@ -11,9 +11,9 @@ class <%= file_path.camelize %>Parser
   # column :<%= options[:columns].first %>, as: [ /first.?name/i, /pr(é|e)nom/i ]
   # column :<%= options[:columns].first %>,  as: [ /last.?name/i, "nom" ]
   # column :<%= options[:columns].first %>,  to: ->(<%= options[:columns].first %>, record) { record.<%= options[:columns].first %> = <%= options[:columns].first %> ?  'a' : 'b' }
-  <% options[:columns].map do |column| %>
+<% options[:columns].map do |column| %>
   column :<%= column.to_sym %>, required: true
-  <% end %>
+<% end %>
   # or :abort
   #  when_invalid :skip
 end
