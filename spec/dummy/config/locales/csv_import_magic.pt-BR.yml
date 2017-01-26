@@ -45,6 +45,7 @@ pt-BR:
           title: Importador de %{model_translated}
           waiting: Processando seu arquivo...
           buttons:
+            success: Continuar
             back: Voltar
             error_file: Ver arquivo de erro
         edit:

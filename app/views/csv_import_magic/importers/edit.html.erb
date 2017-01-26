@@ -1,4 +1,4 @@
-<% columns = @importer.importable_columns.map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
+<% columns = @importer.importable_columns(@importer.parser).map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
 
 <h3 class='page-title'>
   <%= t('csv_import_magic.views.importers.edit.title') %>

@@ -45,6 +45,7 @@ en:
           title: Importer of %{model_translated}
           waiting: Processing your file...
           buttons:
+            success: Success
             back: Back
             error_file: See error file
         edit:
