@@ -1,6 +1,8 @@
 # CsvImportMagic
 
 [![Build Status](https://travis-ci.org/Pagnet/csv_import_magic.svg?branch=master)](https://travis-ci.org/Pagnet/csv_import_magic)
+[![Gem Version](https://badge.fury.io/rb/csv_import_magic.svg)](https://badge.fury.io/rb/csv_import_magic)
+[![Code Climate](https://codeclimate.com/github/Pagnet/csv_import_magic/badges/gpa.svg)](https://codeclimate.com/github/Pagnet/csv_import_magic)
 
 ## Getting started
 
