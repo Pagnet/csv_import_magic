@@ -14,6 +14,7 @@ gem 'rspec-rails'
 gem 'rubocop'
 gem 'shoulda-matchers'
 gem 'sqlite3'
+gem 'rubygems-tasks'
 gem 'simplecov', require: false
 
 # Declare any dependencies that are still in development here instead of in

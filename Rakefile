@@ -6,6 +6,9 @@ end
 
 require 'rdoc/task'
 
+require 'rubygems/tasks'
+Gem::Tasks.new
+
 RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title    = 'CsvImportMagic'

@@ -1,5 +1,7 @@
 # CsvImportMagic
 
+[![Build Status](https://travis-ci.org/Pagnet/csv_import_magic.svg?branch=master)](https://travis-ci.org/Pagnet/csv_import_magic)
+
 ## Getting started
 
 CSV Import Magic works with Rails 4.1 onwards. You can add it to your Gemfile with:
