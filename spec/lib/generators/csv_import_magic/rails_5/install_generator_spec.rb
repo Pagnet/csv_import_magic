@@ -39,6 +39,7 @@ class CreateImporters < ActiveRecord::Migration[5.1]
       t.string :columns
       t.string :message
       t.string :status, default: 'pending'
+      t.string :additional_data
       t.references :importable, polymorphic: true
       t.timestamps null: false
     end
