@@ -42,7 +42,7 @@ module CsvImportMagic
       t.string :columns
       t.string :message
       t.string :status, default: 'pending'
-      t.json :additional_data
+      t.string :additional_data
       t.references :importable, polymorphic: true
 RUBY
       end
