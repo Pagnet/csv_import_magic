@@ -4,7 +4,7 @@ class Importer < ActiveRecord::Base
   STATUS = %w(pending success error).freeze
 
   serialize :columns, Array
-  serialize :additional_data, JSON
+  serialize :additional_data, Hash
 
   has_attached_file :attachment
   has_attached_file :attachment_error
