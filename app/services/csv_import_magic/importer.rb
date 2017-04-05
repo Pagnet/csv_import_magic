@@ -36,7 +36,8 @@ module CsvImportMagic
         model model
 
         after_build do |model|
-          model.assign_attributes(importer.additional_data) rescue nil
+          additional_data = JSON.parse(importer.additional_data)
+          model.assign_attributes(additional_data) rescue nil
         end
       end
     end
