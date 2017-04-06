@@ -4,6 +4,20 @@ RSpec.describe CsvImportMagic::Importer, type: :service do
   let(:importer) { described_class.new(import.id) }
 
   describe '#call' do
+    context 'with additional_data' do
+      let(:additional_data) { '{"one_additional_attribute": "importer-attr", "other_additional_attribute": "other-importer-attr"}' }
+      let(:attachment) { fixture_file_upload(Rails.root.join('../fixtures/companies.csv')) }
+      let(:import) do
+        create :importer, attachment: attachment, source: 'company', columns: %w(name street number neighborhood city state country), additional_data: additional_data
+      end
+
+      it 'create an company for every row with the same additional_data' do
+        expect { importer.call }.to change(Company, :count).by(2)
+        expect(Company.all.pluck(:one_additional_attribute)).to match_array(%w(importer-attr importer-attr))
+        expect(Company.all.pluck(:other_additional_attribute)).to match_array(%w(other-importer-attr other-importer-attr))
+      end
+    end
+
     context 'with resource params' do
       let!(:user) { create(:user) }
       let(:importer) { described_class.new(import.id, model: 'User', id: user.id, relation: 'companies') }

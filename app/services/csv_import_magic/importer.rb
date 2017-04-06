@@ -30,9 +30,17 @@ module CsvImportMagic
 
     def csv_parsed
       model = @model
+      importer = @importer
 
       @csv_parsed ||= csv_parser_class.new(content: content_with_new_header) do
         model model
+
+        after_build do |model|
+          if importer.additional_data
+            additional_data = JSON.parse(importer.additional_data)
+            model.assign_attributes(additional_data) rescue nil
+          end
+        end
       end
     end
 

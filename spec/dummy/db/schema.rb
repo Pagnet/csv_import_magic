@@ -11,41 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_112_125_734) do
-  create_table 'companies', force: :cascade do |t|
-    t.integer 'user_id'
-    t.string  'name'
-    t.string  'street'
-    t.string  'number'
-    t.string  'neighborhood'
-    t.string  'city'
-    t.string  'state'
-    t.string  'country'
-    t.boolean 'active'
+ActiveRecord::Schema.define(version: 20170505100034) do
+
+  create_table "companies", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+    t.string  "street"
+    t.string  "number"
+    t.string  "neighborhood"
+    t.string  "city"
+    t.string  "state"
+    t.string  "country"
+    t.boolean "active"
+    t.string  "one_additional_attribute"
+    t.string  "other_additional_attribute"
   end
 
-  create_table 'importers', force: :cascade do |t|
-    t.string   'attachment_file_name'
-    t.string   'attachment_content_type'
-    t.integer  'attachment_file_size'
-    t.datetime 'attachment_updated_at'
-    t.string   'attachment_error_file_name'
-    t.string   'attachment_error_content_type'
-    t.integer  'attachment_error_file_size'
-    t.datetime 'attachment_error_updated_at'
-    t.string   'source'
-    t.string   'parser'
-    t.string   'columns'
-    t.string   'message'
-    t.string   'status', default: 'pending'
-    t.integer  'importable_id'
-    t.string   'importable_type'
-    t.datetime 'created_at'
-    t.datetime 'updated_at'
+  create_table "importers", force: :cascade do |t|
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.string   "attachment_error_file_name"
+    t.string   "attachment_error_content_type"
+    t.integer  "attachment_error_file_size"
+    t.datetime "attachment_error_updated_at"
+    t.string   "source"
+    t.string   "parser"
+    t.string   "columns"
+    t.string   "message"
+    t.string   "status",                        default: "pending"
+    t.integer  "importable_id"
+    t.string   "importable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "additional_data"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'name'
-    t.string 'email'
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
   end
+
 end
