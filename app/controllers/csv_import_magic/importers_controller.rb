@@ -45,6 +45,12 @@ module CsvImportMagic
       @csv ||= begin
         content = Paperclip.io_adapters.for(@importer.attachment).read.force_encoding('UTF-8')
         content = content.encode('UTF-8', content.encoding, invalid: :replace, undef: :replace)
+
+        if !content.nil?
+          content = content.gsub(/\r/, "\n")
+          content = content.gsub(/\n\n/, "\n")
+        end
+
         ::CSV.parse(content, headers: true, col_sep: column_separator)
       end
     end
