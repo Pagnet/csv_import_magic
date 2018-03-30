@@ -11,11 +11,13 @@ gem 'fuubar'
 gem 'generator_spec'
 gem 'pry'
 gem 'rspec-rails'
-gem 'rubocop'
+gem 'rubocop', '0.54.0'
 gem 'shoulda-matchers'
 gem 'sqlite3'
 gem 'rubygems-tasks'
 gem 'simplecov', require: false
+gem 'nokogiri', '~> 1.8', '>= 1.8.2'
+gem 'loofah', '~> 2.2', '>= 2.2.2'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
