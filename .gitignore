@@ -9,3 +9,5 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 spec/dummy/public/system/
 coverage/
+.ruby-version
+.ruby-gemset
