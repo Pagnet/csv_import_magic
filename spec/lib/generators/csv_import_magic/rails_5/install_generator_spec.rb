@@ -8,8 +8,6 @@ RSpec.describe CsvImportMagic::Generators::InstallGenerator, type: :generator do
     travel_to Time.zone.parse('20170101235959')
 
     allow(Rails).to receive(:version).and_return('5.1')
-    Rails::VERSION::MAJOR = 5
-    Rails::VERSION::MINOR = 1
 
     prepare_destination
 

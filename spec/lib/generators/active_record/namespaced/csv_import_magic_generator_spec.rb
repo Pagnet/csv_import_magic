@@ -20,7 +20,7 @@ RSpec.describe ActiveRecord::Generators::CsvImportMagicGenerator, type: :generat
 
   specify 'check structure of model' do
     model_content = <<-EOF
-class Foo::Bar < ActiveRecord::Base
+class Foo::Bar < ApplicationRecord
   csv_import_magic :foo, :bar
 end
     EOF

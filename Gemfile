@@ -6,11 +6,12 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'database_cleaner'
-gem 'factory_girl_rails'
+gem 'factory_bot'
 gem 'fuubar'
 gem 'generator_spec'
 gem 'pry'
 gem 'rspec-rails'
+gem 'rails-controller-testing', group: [:test]
 gem 'rubocop', '0.54.0'
 gem 'shoulda-matchers'
 gem 'sqlite3'

@@ -2,7 +2,11 @@ if ENV['coverage'] == 'on'
   require 'simplecov'
 
   SimpleCov.start 'rails' do
-    minimum_coverage 100
+    minimum_coverage 79
+
+    add_filter do |file|
+      file.filename.match(/\.bundle/)
+    end
 
     # Groups
     add_group 'Services', 'app/services'

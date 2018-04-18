@@ -5,7 +5,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
 
   describe 'POST #create' do
     def do_action
-      post :create, importer: { attachment: attachment, importable_type: 'User', importable_id: create(:user).id, source: 'company' }
+      post :create, params: { importer: { attachment: attachment, importable_type: 'User', importable_id: create(:user).id, source: 'company' } }
     end
 
     context 'with valid params' do
@@ -39,7 +39,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
     let(:importer) { create :importer }
 
     def do_action
-      get :show, id: importer.id
+      get :show, params: { id: importer.id }
     end
 
     before { do_action }
@@ -55,7 +55,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
     let(:importer) { create :importer }
 
     def do_action
-      get :edit, id: importer.id
+      get :edit, params: { id: importer.id }
     end
 
     before { do_action }
@@ -72,7 +72,7 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
     let(:importer) { create :importer, columns: [] }
 
     def do_action(columns)
-      put :update, id: importer.id, importer: { columns: columns }
+      put :update, params: { id: importer.id, importer: { columns: columns } }
     end
 
     context 'with valid columns' do
