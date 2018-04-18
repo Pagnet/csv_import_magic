@@ -6,7 +6,7 @@
 
 ## Getting started
 
-CSV Import Magic works with Rails 4.1 onwards. You can add it to your Gemfile with:
+CSV Import Magic works with Rails 5.2 onwards. You can add it to your Gemfile with:
 
 ```ruby
 gem 'csv_import_magic'
