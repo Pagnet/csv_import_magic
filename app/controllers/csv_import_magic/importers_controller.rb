@@ -14,7 +14,7 @@ module CsvImportMagic
         redirect_to edit_importer_path(@importer), alert: t('csv_import_magic.importers_controller.create.alert')
       end
     rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
-      redirect_to request.referrer, flash: { error: e.message }
+      redirect_back fallback_location: '/', flash: { error: e.message }
     end
 
     def edit
