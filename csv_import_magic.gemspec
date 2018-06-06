@@ -22,6 +22,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'paperclip', '~> 6.0.0'
   s.add_dependency 'orm_adapter', '~> 0.1'
   s.add_dependency 'simple_form', '~> 3.5.1'
-  s.add_dependency 'sidekiq', '~> 4.2.9'
+  s.add_dependency 'sidekiq', '~> 5.1.3'
   s.add_dependency 'sass-rails', '~> 5.0.7'
 end
