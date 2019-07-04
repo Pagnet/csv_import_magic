@@ -17,7 +17,7 @@ module CsvImportMagic
     end
 
     def column_separator
-      header = content.lines("\r")[0].gsub(/[^,;\t]/, '_')
+      header = content.lines[0].gsub(/[^,;\t]/, '_')
       header.scan(/[,;\t]/).first
     end
 
