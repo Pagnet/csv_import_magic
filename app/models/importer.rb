@@ -33,6 +33,10 @@ class Importer < ActiveRecord::Base
     source_klass.columns_names(name_of_parser.to_sym)
   end
 
+  def human_attribute_name(column, options = {})
+    I18n.translate(:"activemodel.attributes.#{source_klass.model_name.i18n_key}.csv_import_magic.#{column}", options.merge(default: source_klass.human_attribute_name(column)))
+  end
+
   private
 
   def set_parser
@@ -53,7 +57,7 @@ class Importer < ActiveRecord::Base
     return if columns_to_translate.blank?
 
     transalated_name_of_columns = columns_to_translate.map do |column|
-      source_klass.human_attribute_name(column)
+      human_attribute_name(column)
     end.to_sentence
 
     errors.add(:columns, I18n.t('errors.messages.missing', count: columns_to_translate.size, columns: transalated_name_of_columns))
@@ -70,7 +74,7 @@ class Importer < ActiveRecord::Base
 
     headers_to_translate = duplicate_headers.uniq
     headers_transalated = headers_to_translate.map do |header|
-      source_klass.human_attribute_name(header)
+      human_attribute_name(header)
     end.to_sentence
 
     errors.add(:columns, I18n.t('errors.messages.uniq', count: headers_to_translate.size, columns: headers_transalated))
