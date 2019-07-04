@@ -64,7 +64,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
 
   specify 'check structure of edit view' do
     edit_content = <<-EOF
-<% columns = @importer.importable_columns(@importer.parser).map { |column| [@importer.source_klass.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
+<% columns = @importer.importable_columns(@importer.parser).map { |column| [@importer.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]) %>
 
 <h3 class='page-title'>
   <%= t('csv_import_magic.views.importers.edit.title') %>
@@ -83,7 +83,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
           </header>
 
           <% selected = columns.find { |c| c.join(' ').match(/#\{header\}/i) }.try(:last).presence || :ignore %>
-          <%= f.input "columns][", as: :select, collection: columns, label: false, hint: t('csv_import_magic.views.importers.edit.hint'), include_blank: false, selected: f.object.columns[i] || selected %>
+          <%= f.input "columns[]", as: :select, collection: columns, label: false, hint: t('csv_import_magic.views.importers.edit.hint'), include_blank: false, selected: f.object.columns[i] || selected %>
 
           <header class="examples"><%= t('csv_import_magic.views.importers.edit.example_of_values') %></header>
           <table>
