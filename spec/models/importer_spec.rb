@@ -79,4 +79,22 @@ RSpec.describe Importer, type: :model do
     let(:importer) { create(:importer, source: 'company') }
     it { expect(importer.importable_columns).to match_array([:name, :street, :number, :neighborhood, :city, :state, :country]) }
   end
+
+  context '#human_attribute_name' do
+    let(:importer) { create(:importer, source: 'company') }
+    column = 'name'
+    context 'without a translation set' do
+      it 'defaults to source_klass human_attribute_name' do
+        expect(importer.human_attribute_name(column)).to eq(importer.source_klass.human_attribute_name(column))
+      end
+    end
+
+    context 'with a translation set' do
+      it 'returns scoped translation' do
+        allow(I18n).to receive(:translate)
+        allow(I18n).to receive(:translate).with(:"activemodel.attributes.company.csv_import_magic.name", default: importer.source_klass.human_attribute_name(column)).and_return('scoped transalation')
+        expect(importer.human_attribute_name(column)).to eq('scoped transalation')
+      end
+    end
+  end
 end
