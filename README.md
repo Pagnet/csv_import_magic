@@ -71,6 +71,20 @@ $ rails generate csv_import_magic:controllers
 See our wiki page([I18n](https://github.com/Pagnet/csv_import_magic/wiki/I18n)).
 If your language not translated yet, send your yaml to append in our wiki, we appreciate your contribution.
 
+### Development
+
+To run tests you should first configure it's database and dependencies with:
+
+```console
+$ bundle install && bundle exec rake db:schema:load
+```
+
+Then run specs with:
+
+```console
+$ bundle exec rspec
+```
+
 ### CSV Importer
 
 CSV Import Magic is based on csv-importer. We encourage you to read more about csv-importer here:
