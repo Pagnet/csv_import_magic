@@ -4,6 +4,8 @@
 [![Gem Version](https://badge.fury.io/rb/csv_import_magic.svg)](https://badge.fury.io/rb/csv_import_magic)
 [![Code Climate](https://codeclimate.com/github/Pagnet/csv_import_magic/badges/gpa.svg)](https://codeclimate.com/github/Pagnet/csv_import_magic)
 
+---
+
 ## Getting started
 
 CSV Import Magic works with Rails 5.2 onwards. You can add it to your Gemfile with:
