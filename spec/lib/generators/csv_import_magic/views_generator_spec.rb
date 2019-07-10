@@ -83,7 +83,7 @@ RSpec.describe CsvImportMagic::Generators::ViewsGenerator, type: :generator do
           </header>
 
           <% selected = columns.find { |c| c.join(' ').match(/#\{header\}/i) }.try(:last).presence || :ignore %>
-          <%= f.input "columns[]", as: :select, collection: columns, label: false, hint: t('csv_import_magic.views.importers.edit.hint'), include_blank: false, selected: f.object.columns[i] || selected %>
+          <%= f.input "columns][", as: :select, collection: columns, label: false, hint: t('csv_import_magic.views.importers.edit.hint'), include_blank: false, selected: f.object.columns[i] || selected %>
 
           <header class="examples"><%= t('csv_import_magic.views.importers.edit.example_of_values') %></header>
           <table>
