@@ -102,7 +102,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     paperclip (6.0.0)
@@ -243,7 +243,7 @@ DEPENDENCIES
   fuubar
   generator_spec
   loofah (~> 2.2, >= 2.2.2)
-  nokogiri (~> 1.8, >= 1.8.2)
+  nokogiri (~> 1.10)
   pry
   rails-controller-testing
   rspec-rails
