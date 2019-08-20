@@ -17,7 +17,7 @@ gem 'shoulda-matchers'
 gem 'sqlite3'
 gem 'rubygems-tasks'
 gem 'simplecov', require: false
-gem 'nokogiri', '~> 1.8', '>= 1.8.2'
+gem 'nokogiri', '~> 1.10'
 gem 'loofah', '~> 2.2', '>= 2.2.2'
 
 # Declare any dependencies that are still in development here instead of in
