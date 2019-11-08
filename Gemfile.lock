@@ -63,7 +63,7 @@ GEM
       descendants_tracker (~> 0.0.1)
     concurrent-ruby (1.1.5)
     connection_pool (2.2.2)
-    crass (1.0.4)
+    crass (1.0.5)
     csv-importer (0.3.2)
       virtus
     database_cleaner (1.7.0)
@@ -88,7 +88,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.2.0)
-    loofah (2.2.3)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -242,7 +242,7 @@ DEPENDENCIES
   factory_bot
   fuubar
   generator_spec
-  loofah (~> 2.2, >= 2.2.2)
+  loofah (~> 2.3)
   nokogiri (~> 1.10)
   pry
   rails-controller-testing
