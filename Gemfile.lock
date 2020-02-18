@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    csv_import_magic (0.0.10)
+    csv_import_magic (0.0.11)
       csv-importer (~> 0.3.1)
       orm_adapter (~> 0.1)
       paperclip (~> 6.0.0)
