@@ -17,11 +17,11 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.rdoc']
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'rails', '>= 5.0', '< 6.0'
+  s.add_dependency 'rails', '> 5.0', '< 6.0'
   s.add_runtime_dependency 'csv-importer', '~> 0.3.1'
   s.add_runtime_dependency 'paperclip', '~> 6.0.0'
   s.add_dependency 'orm_adapter', '~> 0.1'
   s.add_dependency 'simple_form', '~> 5.0.1'
-  s.add_dependency 'sidekiq', '~> 6.0.5'
+  s.add_dependency 'sidekiq', '>= 6.0.5'
   s.add_dependency 'sass-rails', '~> 5.0.7'
 end
