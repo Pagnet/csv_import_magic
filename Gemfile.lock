@@ -88,7 +88,7 @@ GEM
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     json (2.2.0)
-    loofah (2.3.1)
+    loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -242,7 +242,7 @@ DEPENDENCIES
   factory_bot
   fuubar
   generator_spec
-  loofah (= 2.3.1)
+  loofah (= 2.19.1)
   nokogiri (~> 1.10)
   pry
   rails-controller-testing
