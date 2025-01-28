@@ -19,6 +19,7 @@ gem 'rubygems-tasks'
 gem 'simplecov', require: false
 gem 'nokogiri', '~> 1.10'
 gem 'loofah', '2.3.1'
+gem 'fakeredis', '0.8.0'
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or
