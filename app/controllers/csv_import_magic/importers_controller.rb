@@ -91,7 +91,7 @@ module CsvImportMagic
     end
 
     def importer_params
-      params.require(:importer).permit!
+      params.require(:importer).permit(:source, :attachment, :importable_type, :importable_id)
     end
 
     def csv_importer_magic_update_params
