@@ -54,17 +54,37 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
   describe 'GET #edit' do
     let(:importer) { create :importer }
 
-    def do_action
-      get :edit, params: { id: importer.id }
+    def do_action(format = :html)
+      get :edit, params: { id: importer.id }, format: format
     end
 
-    before { do_action }
+    context 'respond to html' do
+      before { do_action }
 
-    it 'return OK' do
-      is_expected.to respond_with(:success)
-      is_expected.to render_template(:edit)
-      expect(assigns(:importer)).to eq(importer)
-      expect(controller.send(:import_file_csv).headers).to match_array(['bairro', 'cidade ', 'cod', 'estado ', 'nome', 'numero', 'pais', 'rua'])
+      it 'return OK' do
+        is_expected.to respond_with(:success)
+        is_expected.to render_template(:edit)
+        expect(assigns(:importer)).to eq(importer)
+        expect(controller.send(:import_file_csv).headers).to match_array(['bairro', 'cidade ', 'cod', 'estado ', 'nome', 'numero', 'pais', 'rua'])
+      end
+    end
+
+    context 'respond to json' do
+      context 'when importer exists' do
+        it 'returns JSON for the importer' do
+          do_action(:json)
+          expect(response).to be_successful
+          expect(JSON.parse(response.body)).to include('importer')
+        end
+      end
+
+      context 'when importer does not exist' do
+        it 'returns not found error' do
+          get :edit, params: { id: 'nonexistent' }, format: :json
+          expect(response).to have_http_status(:not_found)
+          expect(JSON.parse(response.body)).to include('error' => 'Importer not found')
+        end
+      end
     end
   end
 

@@ -19,6 +19,15 @@ module CsvImportMagic
 
     def edit
       @importer = ::Importer.find(params[:id])
+      respond_to do |format|
+        format.html
+        format.json { render json: { importer: @importer } }
+      end
+    rescue ActiveRecord::RecordNotFound
+      respond_to do |format|
+        format.html { redirect_to '/', flash: { error: 'Importer not found' } }
+        format.json { render json: { error: 'Importer not found' }, status: :not_found }
+      end
     end
 
     def update
