@@ -2,11 +2,12 @@ module CsvImportMagic
   class ImportersController < CsvImportMagic::BaseController
     helper_method :import_file_csv
     layout 'csv_import_magic'
+    respond_to :html, :json
 
     def show
       @importer = ::Importer.find(params[:id])
 
-      respond_to do |format|
+      respond_with do |format|
         format.html
         format.json { render json: @importer }
       end
@@ -16,13 +17,13 @@ module CsvImportMagic
       @importer = ::Importer.new(importer_params)
 
       if @importer.save! && import_file_csv
-        respond_to do |format|
+        respond_with do |format|
           format.html { redirect_to edit_importer_path(@importer), alert: t('csv_import_magic.importers_controller.create.alert') }
           format.json { render json: @importer }
         end
       end
     rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
-      respond_to do |format|
+      respond_with do |format|
         format.html { redirect_back fallback_location: '/', flash: { error: e.message } }
         format.json { render json: { error: e.message }, status: :unprocessable_entity }
       end
@@ -31,12 +32,12 @@ module CsvImportMagic
     def edit
       @importer = ::Importer.find(params[:id])
 
-      respond_to do |format|
+      respond_with do |format|
         format.html
         format.json { render json: @importer }
       end
     rescue ActiveRecord::RecordNotFound
-      respond_to do |format|
+      respond_with do |format|
         format.html
         format.json { render json: { error: 'importer not found' }, status: :unprocessable_entity }
       end
@@ -48,14 +49,14 @@ module CsvImportMagic
       if @importer.update(csv_importer_magic_update_params)
         CsvImportMagic::ImporterWorker.perform_async(importer_id: @importer.id, resources: resources)
 
-        respond_to do |format|
+        respond_with do |format|
           format.html { redirect_to importer_path(@importer), flash: { notice: t('csv_import_magic.importers_controller.update.notice') } }
           format.json { render json: @importer }
         end
       else
         errors = @importer.errors.full_messages.to_sentence
         
-        respond_to do |format|
+        respond_with do |format|
           format.html do 
             flash[:alert] = errors.present? ? errors : t('csv_import_magic.importers_controller.update.alert')
             render :edit
