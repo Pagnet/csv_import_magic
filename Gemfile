@@ -14,9 +14,11 @@ gem 'rspec-rails'
 gem 'rails-controller-testing', group: [:test]
 gem 'rubocop', '0.54.0'
 gem 'shoulda-matchers'
-gem 'sqlite3'
+gem 'sqlite3', '1.4.1'
 gem 'rubygems-tasks'
 gem 'simplecov', require: false
+gem 'responders', '3.1.0'
+gem 'ffi', '1.12.2'
 gem 'nokogiri', '~> 1.10'
 gem 'loofah', '2.3.1'
 gem 'fakeredis', '0.8.0'
