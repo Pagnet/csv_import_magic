@@ -36,7 +36,9 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
           do_action(:json)
           import = Importer.last
           expect(response).to be_successful
-          expect(JSON.parse(response.body)).to include('id' => import.id)
+          expect(JSON.parse(response.body)).to include('importer' => include('id' => import.id))
+          expect(JSON.parse(response.body)).to include('columns' => include(['Ignorar esta coluna', 'ignore'], ['Nome', 'name'], ['Rua', 'street'], ['Numero', 'number'], ['Bairro', 'neighborhood'], ['Cidade', 'city'], ['Estado', 'state'], ['Pais', 'country']))
+          expect(JSON.parse(response.body)).to include('data' => include(a_hash_including('bairro' => 'Joao de Barro', 'cidade ' => 'Birigui', 'estado ' => 'SP ', 'nome' => 'foo', 'numero' => '1', 'pais' => 'Brasil', 'rua' => 'R: Teste')))
         end
       end
     end

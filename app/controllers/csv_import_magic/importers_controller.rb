@@ -19,7 +19,13 @@ module CsvImportMagic
       if @importer.save! && import_file_csv
         respond_with do |format|
           format.html { redirect_to edit_importer_path(@importer), alert: t('csv_import_magic.importers_controller.create.alert') }
-          format.json { render json: @importer }
+          format.json do 
+            render json: {
+              columns: @importer.importable_columns(@importer.parser).map { |column| [@importer.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]),
+              data: import_file_csv.map(&:to_hash),
+              importer: @importer
+            }
+          end
         end
       end
     rescue ActiveRecord::RecordInvalid, CSV::MalformedCSVError => e
