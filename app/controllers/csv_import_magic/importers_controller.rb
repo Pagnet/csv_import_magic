@@ -9,7 +9,12 @@ module CsvImportMagic
 
       respond_with do |format|
         format.html
-        format.json { render json: @importer }
+        format.json do
+          render json: {
+            importer: @importer,
+            attachment_error_url: @importer&.attachment_error&.url,
+          } 
+        end
       end
     end
 

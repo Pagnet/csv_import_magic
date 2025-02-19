@@ -86,7 +86,8 @@ RSpec.describe CsvImportMagic::ImportersController, type: :controller do
         do_action(:json)
         get :show, params: { id: importer.id }, format: :json
         expect(response).to be_successful
-        expect(JSON.parse(response.body)).to include('id' => importer.id)
+        expect(JSON.parse(response.body)).to have_key('importer')
+        expect(JSON.parse(response.body)).to have_key('attachment_error_url')
       end
     end
   end
