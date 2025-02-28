@@ -27,7 +27,7 @@ module CsvImportMagic
           format.json do 
             render json: {
               columns: @importer.importable_columns(@importer.parser).map { |column| [@importer.human_attribute_name(column), column] }.unshift([t('csv_import_magic.views.importers.edit.ignore_column_label'), :ignore]),
-              data: import_file_csv.map(&:to_hash),
+              data: import_file_csv.first(5).map(&:to_hash),
               importer: @importer
             }
           end
