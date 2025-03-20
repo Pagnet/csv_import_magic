@@ -34,7 +34,7 @@ RSpec.describe CsvImportMagic::Generators::InstallGenerator, type: :generator do
 
   specify 'check structure of migrateion' do
     migration_content = <<-EOF
-class CreateImporters < ActiveRecord::Migration[5.1]
+class CreateImporters < ActiveRecord::Migration[5.2]
   def change
     create_table :importers do |t|
       t.attachment :attachment
