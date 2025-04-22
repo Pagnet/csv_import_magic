@@ -19,7 +19,7 @@ gem 'rubygems-tasks'
 gem 'simplecov', require: false
 gem 'responders', '3.1.0'
 gem 'ffi', '1.12.2'
-gem 'nokogiri', '~> 1.10'
+gem 'nokogiri', '~> 1.18'
 gem 'loofah', '2.3.1'
 gem 'fakeredis', '0.8.0'
 
