@@ -113,7 +113,7 @@ GEM
       nokogiri (~> 1)
       rake
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
+    mini_portile2 (2.8.9)
     minitest (5.25.4)
     net-imap (0.3.8)
       date
@@ -125,8 +125,8 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.13.10)
-      mini_portile2 (~> 2.8.0)
+    nokogiri (1.19.1)
+      mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     paperclip (6.0.0)
@@ -278,7 +278,7 @@ DEPENDENCIES
   fuubar
   generator_spec
   loofah (= 2.3.1)
-  nokogiri (~> 1.10)
+  nokogiri (~> 1.19)
   pry
   rails-controller-testing
   responders (= 3.1.0)
